@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.license        = package['license']
   s.author         = package['author']
   s.homepage       = package['homepage']
-  s.source         = { :git => package["repository"]["url"], :tag => s.version }
+  s.source         = { :https://github.com/laowenlu/react-native-contacts-tt, :tag => s.version }
   s.source_files   = 'ios/RCTContacts/*.{h,m}'
   s.requires_arc   = true
   s.platform       = :ios, '8.0'
