@@ -37,8 +37,9 @@
   "dependencies": {
     "react": "^15.3.1"
   },
-  "description": "",
+  "description": "https://github.com/rt2zz/react-native-contacts",
   "homepage": "https://www.npmjs.com/package/react-native-contacts-tt",
+  "summary": "https://github.com/rt2zz/react-native-contacts",
   "keywords": [
     "react-native"
   ],
