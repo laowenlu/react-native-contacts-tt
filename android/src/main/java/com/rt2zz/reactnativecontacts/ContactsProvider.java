@@ -187,67 +187,69 @@ public class ContactsProvider {
                 }
             }
 
-            if (mimeType.equals(StructuredName.CONTENT_ITEM_TYPE)) {
-                contact.givenName = cursor.getString(cursor.getColumnIndex(StructuredName.GIVEN_NAME));
-                contact.middleName = cursor.getString(cursor.getColumnIndex(StructuredName.MIDDLE_NAME));
-                contact.familyName = cursor.getString(cursor.getColumnIndex(StructuredName.FAMILY_NAME));
-                contact.prefix = cursor.getString(cursor.getColumnIndex(StructuredName.PREFIX));
-                contact.suffix = cursor.getString(cursor.getColumnIndex(StructuredName.SUFFIX));
-            } else if (mimeType.equals(Phone.CONTENT_ITEM_TYPE)) {
-                String phoneNumber = cursor.getString(cursor.getColumnIndex(Phone.NUMBER));
-                int type = cursor.getInt(cursor.getColumnIndex(Phone.TYPE));
+            if (!mimeType.isEmpty()) {
+                if (mimeType.equals(StructuredName.CONTENT_ITEM_TYPE)) {
+                    contact.givenName = cursor.getString(cursor.getColumnIndex(StructuredName.GIVEN_NAME));
+                    contact.middleName = cursor.getString(cursor.getColumnIndex(StructuredName.MIDDLE_NAME));
+                    contact.familyName = cursor.getString(cursor.getColumnIndex(StructuredName.FAMILY_NAME));
+                    contact.prefix = cursor.getString(cursor.getColumnIndex(StructuredName.PREFIX));
+                    contact.suffix = cursor.getString(cursor.getColumnIndex(StructuredName.SUFFIX));
+                } else if (mimeType.equals(Phone.CONTENT_ITEM_TYPE)) {
+                    String phoneNumber = cursor.getString(cursor.getColumnIndex(Phone.NUMBER));
+                    int type = cursor.getInt(cursor.getColumnIndex(Phone.TYPE));
 
-                if (!TextUtils.isEmpty(phoneNumber)) {
-                    String label;
-                    switch (type) {
-                        case Phone.TYPE_HOME:
-                            label = "home";
-                            break;
-                        case Phone.TYPE_WORK:
-                            label = "work";
-                            break;
-                        case Phone.TYPE_MOBILE:
-                            label = "mobile";
-                            break;
-                        default:
-                            label = "other";
+                    if (!TextUtils.isEmpty(phoneNumber)) {
+                        String label;
+                        switch (type) {
+                            case Phone.TYPE_HOME:
+                                label = "home";
+                                break;
+                            case Phone.TYPE_WORK:
+                                label = "work";
+                                break;
+                            case Phone.TYPE_MOBILE:
+                                label = "mobile";
+                                break;
+                            default:
+                                label = "other";
+                        }
+                        contact.phones.add(new Contact.Item(label, phoneNumber));
                     }
-                    contact.phones.add(new Contact.Item(label, phoneNumber));
-                }
-            } else if (mimeType.equals(Email.CONTENT_ITEM_TYPE)) {
-                String email = cursor.getString(cursor.getColumnIndex(Email.ADDRESS));
-                int type = cursor.getInt(cursor.getColumnIndex(Email.TYPE));
+                } else if (mimeType.equals(Email.CONTENT_ITEM_TYPE)) {
+                    String email = cursor.getString(cursor.getColumnIndex(Email.ADDRESS));
+                    int type = cursor.getInt(cursor.getColumnIndex(Email.TYPE));
 
-                if (!TextUtils.isEmpty(email)) {
-                    String label;
-                    switch (type) {
-                        case Email.TYPE_HOME:
-                            label = "home";
-                            break;
-                        case Email.TYPE_WORK:
-                            label = "work";
-                            break;
-                        case Email.TYPE_MOBILE:
-                            label = "mobile";
-                            break;
-                        case Email.TYPE_CUSTOM:
-                            if (cursor.getString(cursor.getColumnIndex(Email.LABEL)) != null) {
-                                label = cursor.getString(cursor.getColumnIndex(Email.LABEL)).toLowerCase();
-                            } else {
-                                label = "";
-                            }
-                            break;
-                        default:
-                            label = "other";
+                    if (!TextUtils.isEmpty(email)) {
+                        String label;
+                        switch (type) {
+                            case Email.TYPE_HOME:
+                                label = "home";
+                                break;
+                            case Email.TYPE_WORK:
+                                label = "work";
+                                break;
+                            case Email.TYPE_MOBILE:
+                                label = "mobile";
+                                break;
+                            case Email.TYPE_CUSTOM:
+                                if (cursor.getString(cursor.getColumnIndex(Email.LABEL)) != null) {
+                                    label = cursor.getString(cursor.getColumnIndex(Email.LABEL)).toLowerCase();
+                                } else {
+                                    label = "";
+                                }
+                                break;
+                            default:
+                                label = "other";
+                        }
+                        contact.emails.add(new Contact.Item(label, email));
                     }
-                    contact.emails.add(new Contact.Item(label, email));
+                } else if (mimeType.equals(Organization.CONTENT_ITEM_TYPE)) {
+                    contact.company = cursor.getString(cursor.getColumnIndex(Organization.COMPANY));
+                    contact.jobTitle = cursor.getString(cursor.getColumnIndex(Organization.TITLE));
+                    contact.department = cursor.getString(cursor.getColumnIndex(Organization.DEPARTMENT));
+                } else if (mimeType.equals(StructuredPostal.CONTENT_ITEM_TYPE)) {
+                    contact.postalAddresses.add(new Contact.PostalAddressItem(cursor));
                 }
-            } else if (mimeType.equals(Organization.CONTENT_ITEM_TYPE)) {
-                contact.company = cursor.getString(cursor.getColumnIndex(Organization.COMPANY));
-                contact.jobTitle = cursor.getString(cursor.getColumnIndex(Organization.TITLE));
-                contact.department = cursor.getString(cursor.getColumnIndex(Organization.DEPARTMENT));
-            } else if (mimeType.equals(StructuredPostal.CONTENT_ITEM_TYPE)) {
-                contact.postalAddresses.add(new Contact.PostalAddressItem(cursor));
             }
         }
 

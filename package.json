@@ -1,12 +1,12 @@
 {
   "_args": [
     [
-      "react-native-contacts-tt@0.9.1",
+      "react-native-contacts-tt@0.9.2",
       "/Users/laowen/Desktop/ios_ttqd/QQMProjectSwift/reactnative"
     ]
   ],
-  "_from": "react-native-contacts-tt@0.9.1",
-  "_id": "react-native-contacts-tt@0.9.1",
+  "_from": "react-native-contacts-tt@0.9.2",
+  "_id": "react-native-contacts-tt@0.9.2",
   "_inBundle": false,
   "_integrity": "sha1-blziin1totkwz384RpxYoDpI53k=",
   "_location": "/react-native-contacts-tt",
@@ -20,18 +20,18 @@
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "react-native-contacts-tt@0.9.1",
+    "raw": "react-native-contacts-tt@0.9.2",
     "name": "react-native-contacts-tt",
     "escapedName": "react-native-contacts-tt",
-    "rawSpec": "0.9.1",
+    "rawSpec": "0.9.2",
     "saveSpec": null,
-    "fetchSpec": "0.9.1"
+    "fetchSpec": "0.9.2"
   },
   "_requiredBy": [
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/react-native-contacts-tt/-/react-native-contacts-tt-0.9.1.tgz",
-  "_spec": "0.9.1",
+  "_resolved": "https://registry.npmjs.org/react-native-contacts-tt/-/react-native-contacts-tt-0.9.2.tgz",
+  "_spec": "0.9.2",
   "_where": "/Users/laowen/Desktop/ios_ttqd/QQMProjectSwift/reactnative",
   "author": "",
   "dependencies": {
